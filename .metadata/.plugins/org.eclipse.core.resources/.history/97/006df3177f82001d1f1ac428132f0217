@@ -1,0 +1,15 @@
+package com.prajwal.service;
+
+import java.util.List;
+
+
+import com.prajwal.entity.Post;
+
+
+public interface PostService {
+	
+	public List<Post> getPosts();
+	
+	public void savePost(Post thePost);
+		
+}

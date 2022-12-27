@@ -1,0 +1,37 @@
+package com.prajwal.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+
+import com.prajwal.entity.Comment;
+import com.prajwal.entity.Post;
+
+public class CommentDAOimpl implements CommentDAO {
+
+	@Override
+	public void addComment(Comment comment, int id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		Post post=currentSession.get(Post.class,id);
+		comment.setPost(post);
+		post.getComments().add(comment);
+		currentSession.save(comment);
+
+	}
+
+	@Override
+	public List<Comment> showComment(int id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		List<Comment> comments=currentSession.createQuery("from Comment",Comment.class).getResultList();
+		List<Comment> listOfComments=new ArrayList<Comment>();
+		for (Comment comment:comments) {
+			if(comment.getPost().getId()==id) {
+				listOfComments.add(comment);
+				}
+		}
+		return listOfComments;
+	
+	}
+
+}

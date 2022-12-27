@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form:form action="addComment" modelAttribute="comment">
+	<input type="text" name="name" placeholder="name">
+	<input type="email" name="email" placeholder="email">
+	<input type="text" name="comment" placeholder="comment">
+	<button type="submit" name="publish" value="Save">Publish</button>
+	</form:form>
+</body>
+</html>

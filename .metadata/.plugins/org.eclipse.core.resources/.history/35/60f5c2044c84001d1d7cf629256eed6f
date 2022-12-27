@@ -1,0 +1,66 @@
+package com.prajwal.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.hibernate.SessionFactory;
+
+import com.prajwal.entity.Comment;
+import com.prajwal.entity.Post;
+@Repository
+public class CommentDAOimpl implements CommentDAO {
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Override
+	@Transactional
+
+	public void addComment(Comment comment, int postId) {
+		
+		Session currentSession= sessionFactory.getCurrentSession();
+		Post post=currentSession.get(Post.class,postId);
+		comment.setPost(post);
+		post.getComments().add(comment);
+		currentSession.saveOrUpdate(comment);
+
+	}
+
+	@Override
+	@Transactional
+	public List<Comment> showComment(int id) {
+		System.out.println("*********id="+id);
+		Session currentSession=sessionFactory.getCurrentSession();
+		List<Comment>listOfComments = currentSession.get(Post.class,id).getComments();
+		
+		
+//		List<Comment> comments=currentSession.createQuery(" SELECT a From Comment a",Comment.class).getResultList();
+		System.out.println(" out *******");
+		System.out.println(listOfComments);
+
+
+//		List<Comment> listOfComments=new ArrayList<Comment>();
+//		for (Comment comment:comments) {
+//			if(comment.getPost().getId()==id) {
+//				listOfComments.add(comment);
+//				}
+//		}
+		return listOfComments;
+
+	}
+
+	@Override
+	@Transactional
+	public void deleteComment(int id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		System.out.println(id);
+		currentSession.delete(currentSession.get(Comment.class, id));
+	}
+
+}

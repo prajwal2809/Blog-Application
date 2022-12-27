@@ -1,0 +1,20 @@
+package com.prajwal.service;
+
+import org.apache.jasper.compiler.tagplugin.TagPlugin;
+import org.apache.jasper.compiler.tagplugin.TagPluginContext;
+
+public class TagServiceImpl implements TagService, TagPlugin {
+
+	@Override
+	public void doTag(TagPluginContext arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void createTags(String tagNames, int postId) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,187 @@
+package com.prajwal.dao;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.prajwal.entity.Post;
+import com.prajwal.entity.Tags;
+
+
+@Repository
+public class PostDAOimpl implements PostDAO{
+	  @Autowired
+		private HibernateTemplate hibernateTemplate;
+
+	@Autowired
+	private SessionFactory sessionFactory;
+	@Override
+	@Transactional
+	public List<Post> getPosts() {
+		
+		Session currentSession=sessionFactory.getCurrentSession();
+		
+		Query<Post> theQuery=currentSession.createQuery("from Post",Post.class);
+		
+		List<Post> Posts=theQuery.getResultList();
+		 
+		return Posts;
+	
+	}
+	@Override
+	@Transactional
+	public void savePost(Post thePost) {
+		Session currentSession=sessionFactory.getCurrentSession();
+	
+		currentSession.save(thePost);
+	}
+	@Override
+	@Transactional
+	public Post showPost(int theId) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		Post post=currentSession.get(Post.class, theId);
+		return post;
+		
+	}
+	@Override
+	@Transactional
+	public void updatePost(int theID) {
+
+	Session currentSession=sessionFactory.getCurrentSession();
+	currentSession.saveOrUpdate(theID);
+
+	}
+	@Override
+	@Transactional
+	public void deletePost(int theID) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		currentSession.delete(currentSession.get(Post.class, theID));
+		
+	}
+	@Override
+	@Transactional
+	public void saveTags(Tags tagNames,Post post) {
+//		Session currentSession=sessionFactory.getCurrentSession();
+//		Post post=currentSession.get(Post.class,id);
+		post.addTags(tagNames);
+	
+		
+	}
+	@Override//		if(sort!=null) {
+//	int sortField=Integer.parseInt(sort);
+//	listOfPosts=postService.getListOfPosts(sortField);	
+//}
+//else {
+////	listOfPosts = postService.getListOfPosts(SortUtil.PUBLISHED_AT);
+//}
+	@Transactional
+	public List<Post> searchPosts(String searchName) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Post> theQuery = null;
+        if (searchName != null && searchName.trim().length() > 0) {
+        	theQuery = currentSession.createQuery("from Post where  lower(title) like :theName", Post.class);
+            theQuery.setParameter("theName", "%" + searchName.toLowerCase() + "%");
+        }
+        else {
+        	theQuery =currentSession.createQuery("from Post", Post.class);  
+        }
+        List<Post> thePost = theQuery.getResultList();      
+        return thePost;
+	}
+//	@OverridSe
+//	public List<Post> getSListOfPosts(int theSortField) {
+//		Session currentSession = sessionFactory.getCurrentSession();
+//		String theFieldName = null;
+//		
+//		switch (theSortField) {
+//		
+////		case SortUtil.TITLE: 
+////			theFieldName = "title";
+////			break;
+////			
+////		case SortUtil.AUTHOR:
+////			theFieldName = "author";
+////			break;
+//			
+////		case SortUtil.PUBLISHED_AT:
+//			theFieldName = "publishedAt";
+//		
+//		default:
+//			theFieldName = "title";
+
+//	@Override
+//	@Transactional
+//	public List<Post> sortPosts(String sortBy) {
+//		SessionFactory factory = this.hibernateTemplate.getSessionFactory();
+//		Session session = factory.openSession();
+//		Query query = session.createQuery("from Post order by creationDate " + sortBy);
+//		List<Post> posts = query.getResultList();
+//		return posts;
+//	}
+	@Override
+	public List<Post> getListOfPosts(String theSortField) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String query=""; 
+		
+		if(theSortField == "asc") {
+			query += "from Post order by published_at ASC";
+		}
+		else {
+			query += "from Post order by published_at DESC";
+		}
+		Query<Post> theQuery = currentSession.createQuery(query, Post.class);
+		List<Post> thePost = theQuery.getResultList();		
+		return thePost;
+	}
+		
+//		String queryString = "from Post order by " + theFieldName;
+//		Query<Post> theQuery = currentSession.createQuery(queryString, Post.class);
+//		List<Post> thePost = theQuery.getResultList();		
+//		return thePost;
+//	SS}
+	public List<Post> filterPost(String author) {
+
+		SessionFactory factory = this.hibernateTemplate.getSessionFactory();
+		Session session = factory.openSession();
+		Query query1=session.createQuery("from Tags where name like :s");
+		query1.setParameter("s", author);
+		List<Tags> tags=query1.getResultList();
+		//System.out.println(tags);
+		List<Post> posts=new ArrayList<Post>();
+		if(!tags.isEmpty()) {
+		for(Tags tag:tags) {
+			if(tag.getName().equals(author)) {
+			List<Post> list=tag.getPosts();
+			for(Post post:list) {
+				posts.add(post);
+			}	
+			}
+		}
+	  return posts;
+	}
+		Query query = session.createQuery("FROM Post where  author like :c");
+		query.setParameter("c", author);
+		posts = query.getResultList();
+		return posts;
+
+	}
+	public HibernateTemplate getHibernateTemplate() {
+		return hibernateTemplate;
+	}
+
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+}
+
+
+

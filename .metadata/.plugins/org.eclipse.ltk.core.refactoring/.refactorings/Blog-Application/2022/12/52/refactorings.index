@@ -1,0 +1,18 @@
+1671599540033	Rename package 'com.prajwal.testDatabase'
+1671599602665	Delete element
+1671599666678	Delete element
+1671599795218	Delete element
+1671606149759	Rename type 'post'
+1671607742074	Rename package 'com.prajwal.controller'
+1671612599926	Rename package 'com.prajwal.postcontroller'
+1671616701109	Move 'build' to 'META-INF'
+1671633022298	Delete element
+1671633031161	Delete element
+1671691737746	Rename type 'postController'
+1671692976914	Rename type 'PostController'
+1671693343595	Rename type 'postController'
+1671694650468	Rename resource 'list-post.jsp'
+1671775080135	Delete element
+1671818606756	Rename type 'Comments'
+1671866227479	Rename package 'com.prajwal.post.dao'
+1671908680529	Delete element

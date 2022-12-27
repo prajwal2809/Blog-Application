@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Blog Appication</title>
+</head>
+<body>
+
+	<h2> My Blog Application</h2>
+	<form:form action="search">
+    	Search: <input type="text" name="searchName" />       
+        <input type="submit" value="Search"  />
+    </form:form>
+    <br>
+	<br>
+	
+	<select name="sortBy">
+		<option value="asc">ASC</option>
+		<option value="desc"> DESC</option>
+	
+	</select>
+	
+	
+	<c:url var="sortLinkTitle" value="/dashboard">
+		<c:param name="sort" value="<%= Integer.toString(SortUtil.TITLE) %>" />
+	</c:url>	
+	<c:forEach items="${posts}" var="element">
+	<div>
+		<td>${element.title }</td>
+		<td>${element.excerpt }</td>
+		<td>${element.created_at}</td>
+		
+		<form:form action="showPost"  method="GET">
+		<button type="submit" name="postId" value="${element.id}">display</button>
+		</form:form>
+		
+	</div>
+	</c:forEach>
+			<form:form action="createPost">
+		<button type="submit">create post</button>	
+		</form:form>
+</body>
+</html>

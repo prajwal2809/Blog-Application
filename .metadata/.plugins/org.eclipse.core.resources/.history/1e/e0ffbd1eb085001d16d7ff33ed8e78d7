@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2 th:text="#{welcome.message}"></h2>
+	<form th:action="@{/search}">
+		<input type="submit" value="Search"/>
+	</form>
+	<label th:text="sort By"></label>
+	<form th:action="@{/sortPost}">
+    		<select name="sortBy">
+			<option value="asc">ASC</option>
+			<option value="desc">DESC</option>
+			<input type="submit" value="sort"/> 
+			</select>
+	</form>
+    <br>
+	<br>	
+	<!--  <c:forEach items="${posts}" var="element">-->
+	<div th:each="post: ${posts}">
+		< th:text="${post.title}"/>
+		< th:text="${post.excerpt"/>
+		< th:text="${post.created_at"/>
+	</div>
+	
+	<!--  <div>
+		<td>${element.title }</td>
+		<td>${element.excerpt }</td>
+		<td>${element.created_at}</td> -->
+		
+	<form th:action="@{/showPost}">
+	
+	</form>
+		
+		<form:form action="showPost"  method="GET">
+		<button type="submit" name="postId" value="${element.id}">display</button>
+		</form:form>
+		
+	</div>
+	</c:forEach>
+			<form:form action="createPost">
+		<button type="submit">create post</button>	
+		</form:form>
+</body>
+	
+
+</body>
+</html>

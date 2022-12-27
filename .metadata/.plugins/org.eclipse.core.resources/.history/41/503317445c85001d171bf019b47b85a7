@@ -1,0 +1,29 @@
+package com.prajwal.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.prajwal.entity.Comment;
+import com.prajwal.entity.Post;
+
+
+
+public interface PostService {
+	
+	public List<Post> getPosts();
+	
+	public void savePost(Post thePost,int id,String submitType);
+	
+	public Post showPost(int theId);
+	
+	public void updatePost(int theId);
+	
+	public void deletePost(int theId);
+
+	public void saveTags(List<String> tagNames,int id);
+
+	public List<Post> searchPosts(String searchName);
+	
+//	public int addPost(Post thePost,int id);
+}

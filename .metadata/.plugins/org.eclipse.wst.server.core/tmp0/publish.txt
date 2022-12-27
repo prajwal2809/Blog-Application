@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Tue Dec 27 23:26:22 IST 2022
+org.eclipse.jst.jee.server\:/binary\:/home/prajwal/Downloads/eclipse/BlogApplicationWorkspace/Blog-Application/WebContent/WEB-INF/lib/spring-web-5.3.9.jar=WEB-INF/lib/spring-web-5.3.9.jar
+org.eclipse.jst.jee.server\:/binary\:/home/prajwal/Downloads/eclipse/BlogApplicationWorkspace/Blog-Application/WebContent/WEB-INF/lib/spring-web-5.3.9-sources.jar=WEB-INF/lib/spring-web-5.3.9-sources.jar

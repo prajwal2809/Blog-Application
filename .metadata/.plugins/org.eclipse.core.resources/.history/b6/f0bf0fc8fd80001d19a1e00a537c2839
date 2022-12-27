@@ -1,0 +1,9 @@
+package com.prajwal.post.dao;
+import java.util.List;
+
+public interface PostDAO {
+	
+	public list<Post> getPosts();
+	
+
+}

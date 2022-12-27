@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Blog Appication</title>
+</head>
+<body>
+
+	<h2> My Blog Application</h2>
+	<c:forEach items="${posts}" var="element">
+	<div>
+		<td>${element.title }</td>
+		<td>${element.excerpt }</td>
+		<td>${element.created_at}</td>
+		
+		<form:form action="showPost"  method="GET">
+		<button type="submit" name="postId" value="${element.id}">display</button>
+		</form:form>
+		<form:form action="createPost"  method="GET">
+		<button type="submit">create post</button>	
+		</form:form>
+		
+	</div>
+	</c:forEach>
+</body>
+</html>

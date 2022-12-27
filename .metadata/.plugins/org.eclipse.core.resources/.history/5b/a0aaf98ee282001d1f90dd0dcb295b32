@@ -1,0 +1,50 @@
+package com.prajwal.service;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.prajwal.entity.Post;
+import com.prajwal.post.dao.PostDAO;
+
+@Service
+public class PostServiceImpl implements PostService {
+	
+	@Autowired
+	private PostDAO postDAO;
+	
+	@Override
+	@Transactional
+	public List<Post> getPosts(){
+		return postDAO.getPosts();
+	}
+	@Override
+	@Transactional
+	public void savePost(Post thePost) {
+		
+//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		postDAO.savePost(thePost);
+	}
+	@Override
+	@Transactional
+	public Post showPost(int theID) {
+		
+		return postDAO.showPost(theID);
+	}
+	@Override
+	public void updatePost(int theId) {
+		postDAO.updatePost(theId);
+	}
+	@Override
+	public void deletePost(int theID) {
+		postDAO.deletePost(theID);
+	}
+	
+	
+
+}

@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+    
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>New/Edit post</title>
+</head>
+<body>
+
+	<h2>New/Edit post</h2>
+	
+	<form:form action="savePost" modelAttribute="post" method="POST">
+	<label>Title</label>
+	<form:input path="title"/>
+	<label>Tags</label>
+	<form:input path="tags"/>
+	<label>Content</label>
+	<form:input path="content"/>
+	
+	</form:form>
+
+</body>
+</html>

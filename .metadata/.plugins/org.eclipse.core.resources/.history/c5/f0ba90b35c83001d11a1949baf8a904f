@@ -1,0 +1,19 @@
+package com.prajwal.service;
+
+import org.springframework.stereotype.Service;
+
+import com.prajwal.dao.CommentDAO;
+import com.prajwal.entity.Comment;
+@Service
+public class CommentServiceImpl implements CommentService {
+	@Autowired
+	private CommentDAO commentDAO;
+	@Override
+	public void addComment(Comment comment, int id) {
+		CommentDAO.addComment(comment,id);
+	}
+	@Override
+	public void showComment(int id) {
+		CommentDAO.showComment(id);
+	}
+}

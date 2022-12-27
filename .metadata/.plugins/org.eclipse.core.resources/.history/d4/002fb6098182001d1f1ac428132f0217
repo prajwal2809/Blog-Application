@@ -1,0 +1,50 @@
+package com.prajwal.entity;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="post_tags")
+public class PostTags {
+	
+
+	public PostTags() {
+		super();
+	}
+	public PostTags(Timestamp created_at, Timestamp updated_at) {
+		super();
+		this.created_at = created_at;
+		this.updated_at = updated_at;
+	}
+	public Timestamp getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(Timestamp created_at) {
+		this.created_at = created_at;
+	}
+	public Timestamp getUpdated_at() {
+		return updated_at;
+	}
+	public void setUpdated_at(Timestamp updated_at) {
+		this.updated_at = updated_at;
+	}
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private int id;
+	private int post_id;
+	private int tag_id;
+	@Column(name="created_at")
+	private Timestamp created_at;
+	@Column(name="updated_at")
+	private Timestamp updated_at;
+	
+
+}

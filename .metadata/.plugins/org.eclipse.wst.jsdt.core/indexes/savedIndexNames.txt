@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+/home/prajwal/Downloads/eclipse/BlogApplicationWorkspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+814952636.index
+3540524587.index
+2200020126.index
+4266516259.index
+3922465081.index
+707251705.index
+2126395228.index

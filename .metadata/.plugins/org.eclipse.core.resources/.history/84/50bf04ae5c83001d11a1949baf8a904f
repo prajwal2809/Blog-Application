@@ -1,0 +1,15 @@
+package com.prajwal.service;
+
+import com.prajwal.dao.CommentDAO;
+import com.prajwal.entity.Comment;
+
+public class CommentServiceImpl implements CommentService {
+	@Override
+	public void addComment(Comment comment, int id) {
+		CommentDAO.addComment(comment,id);
+	}
+	@Override
+	public void showComment(int id) {
+		CommentDAO.showComment(id);
+	}
+}

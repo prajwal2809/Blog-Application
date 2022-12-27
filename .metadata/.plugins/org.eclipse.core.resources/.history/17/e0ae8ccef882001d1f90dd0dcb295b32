@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Show Post</title>
+</head>
+<body>
+
+<div>
+	<h2>${post.title}</h2>
+	<h3>${post.published_at}</h3>
+	<p>${post.content}<p>
+	
+	<form:form action="updatePost" >
+		<button type="submit" name="postId" value="${post.id}">update</button>
+	</form:form>
+
+	<form:form action="deletePost" var="post">
+		<button type="delete" name="postId" value="${post.id}">delete</button>
+	</form:form>
+	
+	<form action="addComment" modelAttribute="comment"  var="comment">
+	<form:input path="comment"/>
+	<label>Add Comment</label>
+	<button type ="comment" name="commentId" value="${comment.id }">comment </button>
+	</form>
+</div>
+
+
+
+
+</body>
+</html>

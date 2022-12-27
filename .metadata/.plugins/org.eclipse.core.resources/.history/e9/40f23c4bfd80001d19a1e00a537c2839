@@ -1,0 +1,5 @@
+package com.prajwal.post.dao;
+
+public interface PostDAO {
+
+}

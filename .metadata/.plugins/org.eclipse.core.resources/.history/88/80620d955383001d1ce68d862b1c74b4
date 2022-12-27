@@ -1,0 +1,20 @@
+package com.prajwal.post.dao;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.prajwal.entity.Comment;
+import com.prajwal.entity.Post;
+
+
+public interface PostDAO {
+	
+	public List<Post> getPosts();
+	
+	public void savePost(Post thePost);
+	
+	public Post showPost(int theID);
+	public void updatePost(int theID);
+	public void deletePost(int theID);
+	public void addComment(Comment comment , int id);
+}

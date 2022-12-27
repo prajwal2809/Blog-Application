@@ -1,0 +1,5 @@
+package com.prajwal.entity;
+
+public class User {
+
+}

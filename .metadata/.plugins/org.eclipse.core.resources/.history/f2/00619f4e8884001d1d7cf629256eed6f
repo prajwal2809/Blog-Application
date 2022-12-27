@@ -1,0 +1,7 @@
+package com.prajwal.service;
+
+public interface TagService {
+	
+	public void createTags(String tagNames,int postId);
+
+}

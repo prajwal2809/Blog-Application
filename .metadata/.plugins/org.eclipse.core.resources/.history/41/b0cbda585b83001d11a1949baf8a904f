@@ -1,0 +1,21 @@
+package com.prajwal.dao;
+
+import java.util.List;
+
+import com.prajwal.entity.Comment;
+
+public class CommentDAOimpl implements CommentDAO {
+
+	@Override
+	public void addComment(Comment comment, int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Comment> showComment(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

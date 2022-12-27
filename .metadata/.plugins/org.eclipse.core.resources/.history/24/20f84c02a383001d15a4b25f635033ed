@@ -1,0 +1,11 @@
+package com.prajwal.dao;
+
+import java.util.List;
+
+import com.prajwal.entity.Comment;
+
+public interface CommentDAO {
+	public void addComment(Comment comment , int id);
+	public List<Comment> showComment(int id);
+
+}

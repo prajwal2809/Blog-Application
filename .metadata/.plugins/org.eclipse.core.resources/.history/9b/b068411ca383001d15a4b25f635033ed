@@ -1,0 +1,50 @@
+package com.prajwal.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.hibernate.SessionFactory;
+
+import com.prajwal.entity.Comment;
+import com.prajwal.entity.Post;
+@Repository
+public class CommentDAOimpl implements CommentDAO {
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Override
+	@Transactional
+	@RequestMapping("/addComment")
+	public void addComment(Comment comment, int id) {
+		
+		Session currentSession= sessionFactory.getCurrentSession();
+		Post post=currentSession.get(Post.class,id);
+		comment.setPost(post);
+		post.getComments().add(comment);
+		currentSession.save(comment);
+
+	}
+
+	@Override
+	@Transactional
+	@RequestMapping("/showComment")
+	public List<Comment> showComment(int id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		List<Comment> comments=currentSession.createQuery("from Comment",Comment.class).getResultList();
+		List<Comment> listOfComments=new ArrayList<Comment>();
+		for (Comment comment:comments) {
+			if(comment.getPost().getId()==id) {
+				listOfComments.add(comment);
+				}
+		}
+		return listOfComments;
+
+	}
+
+}

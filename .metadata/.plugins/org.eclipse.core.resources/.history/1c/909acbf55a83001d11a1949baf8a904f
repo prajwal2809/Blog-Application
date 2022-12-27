@@ -1,0 +1,5 @@
+package com.prajwal.service;
+
+public class CommentServiceImpl {
+
+}
