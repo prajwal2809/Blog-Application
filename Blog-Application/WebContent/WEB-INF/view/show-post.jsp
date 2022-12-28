@@ -14,7 +14,6 @@
 	<h2>${post.title}</h2>
 	<h3>${post.published_at}</h3>
 	<p>${post.content}<p>
-	
 	<form:form action="updatePost" >
 		<button type="submit"  name="postId" value="${post.id}">update</button>
 	</form:form>
@@ -45,9 +44,5 @@
 	
 
 </div>
-
-
-
-
 </body>
 </html>

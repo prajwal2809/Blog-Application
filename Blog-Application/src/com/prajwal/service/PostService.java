@@ -24,6 +24,12 @@ public interface PostService {
 	public List<Post> searchPosts(String searchName);
 	
 	public List<Post> getListOfPosts(String sortField);
+	
+	public List<Post> filterPost(String author,String tagName);
+
+	public List<String> getTagList();
+
+	public List<String> getAuthorList();
 
 //	public List<Post> sortPosts(String sortBy);
 	

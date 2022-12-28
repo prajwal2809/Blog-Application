@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.prajwal.dao.PostDAO;
 import com.prajwal.entity.Post;
-import com.prajwal.entity.Tags;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -102,6 +101,28 @@ public class PostServiceImpl implements PostService {
 //		
 //		return postDAO.sortPosts(sortBy);
 //		}
+//	@Override
+//	public List<Post> filterPost(String author) {
+//		return postDAO.filterPost(author);
+//	}
+	@Override
+	@Transactional
+	public List<String> getTagList() {
+		
+		return postDAO.getTagList();
+	}
+	@Override
+	@Transactional
+	public List<String> getAuthorList() {
+		return postDAO.getAuthorList();
+		
+	}
+	@Override
+	@Transactional
+	public List<Post> filterPost(String author,String tagName) {
+		// TODO Auto-generated method stub
+		return postDAO.filterPost(author,tagName);
+	}
 
 
 

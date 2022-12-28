@@ -22,7 +22,13 @@ public interface PostDAO {
 
 	public List<Post> searchPosts(String searchName);
 	public List<Post> getListOfPosts(String sortField);
-	public List<Post> filterPost(String author);
+//	public List<Post> filterPost(String author);
+
+	public List<String> getAuthorList();
+	
+	public List<String> getTagList();
+
+	public List<Post> filterPost(String author, String tagName);
 
 //	public List<Post> sortPosts(String sortBy);
 

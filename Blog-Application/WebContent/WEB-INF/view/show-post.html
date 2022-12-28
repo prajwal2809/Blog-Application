@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2 th:text="${post.title}"></h2>
+	<h3 th:text="${post.published_at}"></h3>
+	<p th:text="${post.content}"></p>
+	<form th:action="@{updatePost}" >
+		<button type="submit"  th:name="postId" th:value="${post.id}">update</button>
+	</form>
+	<form th:action="@{deletePost}" th:with="post=${post}">
+		<button type="submit" th:name="postId" th:value="${post.id}">delete</button>
+	</form>
+	<form th:action="@{comment}" th:object="${comment}" th:with="comment=${comment}">
+		<button type ="submit" th:name="id" th:value="${post.id}">comment</button>
+	</form>
+	<h2>Comments</h2>
+	<div th:each="comment : ${post.comments}">
+		<h5 th:text="${comment.name}"></h5>
+		<p th:text="${comment.comment}"></p>
+		<form th:action="@{updateComment}" th:object="${update}" th:with="update=${comment}">
+			<input th:name="id" th:value="${post.id}"/>
+			<button type="submit" th:name="commentId" th:value="${comment.id}">Update</button>
+		</form>
+		<form th:action="@{deleteComment}" th:object="${delete}" th:with="delete=${comment}">
+			<input th:name="postId" th:value="${post.id}"/>
+			<button type="submit" th:name="commentId" th:value="${comment.id}">Delete</button>
+		</form>
+	</div> 
+	
+	
+
+
+
+</body>
+</html>

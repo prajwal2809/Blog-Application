@@ -27,17 +27,19 @@
     <br>
 	<br>	
 	
-	<form>
-	<label>Filter By</label><br>
-	<select name="select" multiple>
-		<option>item1</option>
-		<option>item2</option>
-		<option>item3</option>
-		<option>item4</option>
-		<option>item5</optiom><br>
-		<p><input type="submit" value="submit"></p><br>
-	</select>
-	</form>
+	<form:form action="filter">	
+		<select name="author" multiple>
+        <c:forEach var="authorName" items="${authorList}">
+            <option value="${authorName}">${authorName}</option>
+        </c:forEach>
+    	</select>
+    	<select name="tag" multiple>
+        	<c:forEach var="tagName" items="${tagList}">
+            	<option value="${tagName}">${tagName}</option>
+        	</c:forEach>
+    	</select>
+    	<button type="submit">Filter</button>
+	</form:form>
 		
 	<c:forEach items="${posts}" var="element">
 	<div>

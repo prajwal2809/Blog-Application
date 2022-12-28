@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2>New/Edit post</h2>	
+	<form th:action="@{savePost}" th:object="${post}" method="POST"><br><br>
+		<input type="hidden" name="id" th:value="[[${post.id}]]"/>
+		<label>Name</label>
+		<input th:field="*{author}"/>
+		<input th:field="*{title}"/>
+		<label>Title</label><br>			
+		<label>Excerpt</label><br>
+		<input th:field="*{excerpt}"/>
+		<label>enter the tags</label>
+		<input type="text" th:name="tagNames"><br><br>
+		<label>Content</label><br>
+		<input th:field="*{content}"/>
+		<button type="submit" th:name="publish" value="Save">Publish</button><br>
+	</form>
+
+</body>
+</html>

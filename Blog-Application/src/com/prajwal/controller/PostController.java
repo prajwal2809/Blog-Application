@@ -32,7 +32,11 @@ public class PostController {
 	public String listPosts(Model theModel) {
 		
 		List<Post> thePosts=postService.getPosts();
+		List<String> authorList=postService.getAuthorList();
+		List<String> tagList=postService.getTagList();
 		theModel.addAttribute("posts", thePosts);
+		theModel.addAttribute("authorList", authorList);
+		theModel.addAttribute("tagList", tagList);
 		return "list-posts";			
 	}
 	@GetMapping("/newpost")
@@ -50,6 +54,7 @@ public class PostController {
 //		int postId=postService.addPost(thePost,id);
 		postService.savePost(thePost,id,submitType);
 		postService.saveTags(tagNames, thePost.getId());
+		
 //		System.out.println(tagNames);
 		System.out.println(id);
 		System.out.println(thePost.getId());
@@ -139,9 +144,17 @@ public class PostController {
     	return "list-posts";
     }
 	@RequestMapping("/filter")
-	public String filter(@RequestParam("select") String name,Model model) {
-		List<Post> posts=postService.searchPosts(name);
-		model.addAttribute("posts",posts);
-		return "post-confirmation";		
+	public String filter(@RequestParam("author") String authorName,Model model,@RequestParam("tag") String tagName) {
+//		List<Post> posts=postService.searchPosts(name);
+//		model.addAttribute("posts",posts);
+//		System.out.println(name);
+		List<Post> postList=postService.filterPost(authorName,tagName);
+		List<String> authorList=postService.getAuthorList();
+		List<String> tagList=postService.getTagList();
+		model.addAttribute("posts", postList);
+		model.addAttribute("authorList", authorList);
+		model.addAttribute("tagList", tagList);
+		return "list-posts";		
 	}
 }
+

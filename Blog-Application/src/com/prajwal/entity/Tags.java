@@ -48,9 +48,9 @@ public class Tags {
 		if(posts==null) {
 			posts=new ArrayList<>();
 			
-			posts.add(postList);
+//			posts.add(postList);
 		}
-//		if(tagsNames)
+////		if(tagsNames)
 		posts.add(postList);
     }
 	public String getName() {

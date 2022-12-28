@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2> My Blog Application</h2>
+	<form th:action="@{search}">
+  		Search: <input type="text" name="searchName" />       
+  		<input type="submit" value="Search"  />
+		</form>
+	<label>sort by</label>
+	<form th:action="@{sortPost}">
+  	<select th:name="sortBy">
+    	<option th:value="asc" th:text="ASC">ASC</option>
+    	<option th:value="desc" th:text="DESC">DESC</option>
+    	<form th:action="@{/sort}">
+  			<input type="submit" th:value="sort" />
+		</form>
+  	</select>
+</form>
+    <br>
+	<br>	
+<form th:action="@{filter}">  
+  <select name="author" multiple>
+    <option th:each="authorName : ${authorList}" th:value="[[${authorName}]]" th:text="[[${authorName}]]"></option>
+  </select>
+  <select name="tag" multiple>
+    <option th:each="tagName : ${tagList}" th:value="[[${tagName}]]" th:text="[[${tagName}]]"></option>
+  </select>
+  <button type="submit">Filter</button>
+</form>		
+<div th:each="element : ${posts}">
+    <div th:text="${element.title}"></div>
+    <div th:text="${element.excerpt}"></div>
+    <div th:text="${element.created_at}"></div>
+  <form th:action="@{showPost}"  method="GET">
+    <button type="submit" name="postId" th:value="[[${element.id}]]">display</button>
+  </form> 
+</div>
+<form th:action="@{createPost}">
+  <button type="submit">create post</button>  
+</form>
+</body>
+</html>
